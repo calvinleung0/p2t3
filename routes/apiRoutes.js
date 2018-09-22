@@ -1,31 +1,59 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // Get all users
+  app.get("/api/users", function(req, res) {
+    db.User.findAll({}).then(function(data) {
+      res.json(data);
     });
   });
 
-  // Get an example by id
-  app.get("/api/examples/:id", function(req, res) {
+  // Get a user by id
+  app.get("/api/users/:id", function(req, res) {
     db.Example.findOne({where: {id: req.params.id}}).then(function(dbExamples) {
       res.json(dbExamples);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Create a new user
+  app.post("/api/users", function(req, res) {
+    db.User.create(req.body).then(function(data) {
+      res.json(data);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  // Delete a user by id
+  app.delete("/api/users/:id", function(req, res) {
+    db.User.destroy({ where: { id: req.params.id } }).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // Get all projects
+  app.get("/api/projects", function(req, res) {
+    db.Project.findAll({}).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // Get a project by id
+  app.get("/api/projects/:id", function(req, res) {
+    db.Example.findOne({where: {id: req.params.id}}).then(function(dbExamples) {
+      res.json(dbExamples);
+    });
+  });
+
+  // Create a new project
+  app.post("/api/projects", function(req, res) {
+    db.Project.create(req.body).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  // Delete a project by id
+  app.delete("/api/projects/:id", function(req, res) {
+    db.Project.destroy({ where: { id: req.params.id } }).then(function(data) {
+      res.json(data);
     });
   });
 };
