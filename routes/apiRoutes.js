@@ -9,9 +9,29 @@ module.exports = function(app) {
   });
 
   // Get a user by id
-  app.get("/api/users/:id", function(req, res) {
-    db.Example.findOne({where: {id: req.params.id}}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/api/users/:userid", function(req, res) {
+    db.User.findOne({
+      where: {id: req.params.userid}
+    }).then(function(userData) {
+      db.Donation.findAll({
+        attributes: ['project_name', 'amount', 'time'],
+        where: {
+          userid: req.params.userid 
+        },
+        include: [{model: db.Project}]
+      }).then(function(donationData) {
+        db.Project.findAll({
+          attributes: ['project_name'],
+          where: {
+            userid: req.params.userid 
+          },
+        }).then(function(projectData) {
+          var user = userData[0];
+          user["donations"] = donationData;
+          user["projects"] = projectData;
+          res.json(user);
+        });
+      });
     });
   });
 
@@ -37,9 +57,21 @@ module.exports = function(app) {
   });
 
   // Get a project by id
-  app.get("/api/projects/:id", function(req, res) {
-    db.Example.findOne({where: {id: req.params.id}}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/api/projects/:projectid", function(req, res) {
+    db.User.findOne({
+      where: {id: req.params.projectid}
+    }).then(function(projectData) {
+      db.Donation.findAll({
+        attributes: ['user_name', 'amount', 'time'],
+        where: {
+          projectid: req.params.projectid 
+        },
+        include: [{model: db.User}]
+      }).then(function(donationData) {
+          var project = projectData[0];
+          user["donations"] = donationData;
+          res.json(project);
+      });
     });
   });
 
