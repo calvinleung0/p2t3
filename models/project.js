@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-  }
+  };
 
   Project.associate = function(models) {
     Project.hasMany(models.Donation, {
@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "projectId"
       }
     });
-  }
+  };
 
   return Project;
 };
