@@ -5,20 +5,52 @@ var bcrypt = require("bcrypt-nodejs");
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     // The email cannot be null, and must be a proper email before creation
-    email: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true
+        notEmpty: true
       }
     },
-    // The password cannot be null
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    profileImg: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true
+      }
+    },
+    bio: {
+      type: DataTypes.TEXT,
+    },
+    interests: {
+      type: DataTypes.STRING
     }
   });
+
+  User.associate = function(models) {
+    User.hasMany(models.Project, {
+      onDelete: "cascade",
+      constraints: true,
+      foreignKey: {
+        name: "userId"
+      }
+    });
+  };
+
+  User.associate = function(models) {
+    User.hasMany(models.Donation, {
+      onDelete: "cascade",
+      constraints: true,
+      foreignKey: {
+        name: "userId"
+      }
+    });
+  };
+
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
