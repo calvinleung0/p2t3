@@ -14,9 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-  };
 
-  Donation.associate = function(models) {
     Donation.belongsTo(models.Project, {
       foreignKey: {
         name: "projectId",

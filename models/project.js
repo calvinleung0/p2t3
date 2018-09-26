@@ -30,20 +30,18 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Project.associate = function(models) {
-    Project.belongsTo(models.User, {
-      foreignKey: {
-        name: "userId",
-        allowNull: false
-      }
-    });
-  };
-
-  Project.associate = function(models) {
     Project.hasMany(models.Donation, {
       onDelete: "cascade",
       constraints: true,
       foreignKey: {
         name: "projectId"
+      }
+    });
+
+    Project.belongsTo(models.User, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false
       }
     });
   };

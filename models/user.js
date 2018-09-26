@@ -39,9 +39,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "userId"
       }
     });
-  };
 
-  User.associate = function(models) {
     User.hasMany(models.Donation, {
       onDelete: "cascade",
       constraints: true,
