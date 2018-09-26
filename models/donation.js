@@ -14,6 +14,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       }
     });
+  };
 
     Donation.belongsTo(models.Project, {
       foreignKey: {
