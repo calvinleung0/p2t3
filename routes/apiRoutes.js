@@ -10,20 +10,33 @@ module.exports = function(app) {
   // Get a user by id
   app.get("/api/users/:userid", function(req, res) {
     db.User.findOne({
-      where: {id: req.params.userid},
+      where: { id: req.params.userid },
       include: [
-        {model: db.Project, attributes: ['title', 'id'],
-        include: [{model: db.Donation, attributes: [[db.sequelize.fn('SUM', db.sequelize.col('amount')), 'raised']]}]}
+        {
+          model: db.Project,
+          attributes: ["title", "id"],
+          include: [
+            {
+              model: db.Donation,
+              attributes: [
+                [db.sequelize.fn("SUM", db.sequelize.col("amount")), "raised"]
+              ]
+            }
+          ]
+        }
       ]
     }).then(function(data) {
       db.Donation.findAll({
-        where: {userId: req.params.userid},
-        attributes: ['amount'],
-        include: [{model: db.Project, attributes: ['title', 'id']}
+        where: { userId: req.params.userid },
+        attributes: ["amount"],
+        include: [
+          {
+            model: db.Project,
+            attributes: ["title'", "id"]
+          }
         ]
-      }).then(function(donations){
-        
-        for(var i = 0; i < donations.length; i++){
+      }).then(function(donations) {
+        for (var i = 0; i < donations.length; i++) {
           donations[i] = donations[i].dataValues;
           donations[i].project = donations[i].Project;
           delete donations[i].Project;
@@ -32,23 +45,19 @@ module.exports = function(app) {
 
         projects = [];
 
-        for(var i = 0; i < data.Projects.length; i++){
+        for (var i = 0; i < data.Projects.length; i++) {
           projects[i] = data.Projects[i].dataValues;
           projects[i].total = projects[i].Donations[0].dataValues.raised;
           delete projects[i].Donations;
-          
         }
 
         delete data.Projects;
-        
         data.donations = donations;
         data.projects = projects;
-        //data.projects.total = data.Projects.Donations[0].dataValues.raised;
         console.log(donations);
         console.log(data);
         res.json(data);
       });
-      
     });
   });
 
@@ -76,29 +85,38 @@ module.exports = function(app) {
   // Get a project by id
   app.get("/api/projects/:projectid", function(req, res) {
     db.Project.findOne({
-      where: {id: req.params.projectid},
+      where: { id: req.params.projectid },
       include: [
-        {model: db.User, attributes: ['name', 'id']},
-        {model: db.Donation, attributes: [[db.sequelize.fn('SUM', db.sequelize.col('amount')), 'raised']]}
+        {
+          model: db.User,
+          attributes: ["name", "id"]
+        },
+        {
+          model: db.Donation,
+          attributes: [
+            [db.sequelize.fn("SUM", db.sequelize.col("amount")), "raised"]
+          ]
+        }
       ]
     }).then(function(data) {
       db.Donation.findAll({
-        where: {projectId: req.params.projectid},
-        attributes: ['amount'],
-        include: [{model: db.User, attributes: ['name', 'id']}
+        where: { projectId: req.params.projectid },
+        attributes: ["amount"],
+        include: [
+          {
+            model: db.User,
+            attributes: ["name", "id"]
+          }
         ]
-      }).then(function(donations){
-        
-        for(var i = 0; i < donations.length; i++){
+      }).then(function(donations) {
+        for (var i = 0; i < donations.length; i++) {
           donations[i] = donations[i].dataValues;
           donations[i].user = donations[i].User;
           delete donations[i].User;
         }
 
         data = data.dataValues;
-
         data.user = data.User;
-        
         data.donations = donations;
         data.total = data.Donations[0].dataValues.raised;
 
@@ -131,5 +149,3 @@ module.exports = function(app) {
     });
   });
 };
-
-
