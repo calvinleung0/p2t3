@@ -76,18 +76,36 @@ module.exports = function(app) {
   // Get a project by id
   app.get("/api/projects/:projectid", function(req, res) {
     db.Project.findOne({
-      where: {id: req.params.projectid}
-    }).then(function(projectData) {
+      where: {id: req.params.projectid},
+      include: [
+        {model: db.User, attributes: ['name', 'id']},
+        {model: db.Donation, attributes: [[db.sequelize.fn('SUM', db.sequelize.col('amount')), 'raised']]}
+      ]
+    }).then(function(data) {
       db.Donation.findAll({
-        attributes: ['user_name', 'amount', 'time'],
-        where: {
-          projectId: req.params.projectid 
-        },
-        include: [{model: db.User}]
-      }).then(function(donationData) {
-          var project = projectData[0];
-          user["donations"] = donationData;
-          res.json(project);
+        where: {projectId: req.params.projectid},
+        attributes: ['amount'],
+        include: [{model: db.User, attributes: ['name', 'id']}
+        ]
+      }).then(function(donations){
+        
+        for(var i = 0; i < donations.length; i++){
+          donations[i] = donations[i].dataValues;
+          donations[i].user = donations[i].User;
+          delete donations[i].User;
+        }
+
+        data = data.dataValues;
+
+        data.user = data.User;
+        
+        data.donations = donations;
+        data.total = data.Donations[0].dataValues.raised;
+
+        delete data.User;
+        delete data.Donations;
+        console.log(data);
+        res.json(data);
       });
     });
   });
