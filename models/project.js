@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Project = sequelize.define("Project", {
     // The email cannot be null, and must be a proper email before creation
     title: {
@@ -29,7 +29,14 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Project.associate = function(models) {
+  Project.associate = function (models) {
+    Project.belongsTo(models.User, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false
+      }
+    });
+
     Project.hasMany(models.Donation, {
       onDelete: "cascade",
       constraints: true,
