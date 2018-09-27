@@ -7,6 +7,10 @@ body {
     background-size: cover; 
 }
 
+.modal-body {
+    text-align: center;
+}
+
 h1,
 h2 {
  
@@ -30,7 +34,7 @@ h2 {
 }
 
 .navbar {
-opacity: .5;
+opacity: .65;
 }
 
 #navigation {
@@ -39,4 +43,8 @@ opacity: 100%;
 
 a {
     font-size: 22px;
+}
+
+h3{
+    color: white;
 }
