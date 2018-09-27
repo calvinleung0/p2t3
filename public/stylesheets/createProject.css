@@ -1,0 +1,115 @@
+body {
+    background-image: url('../images/horazontal.jpg');
+    background-repeat: no-repeat center center fixed; 
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover; 
+  }
+  
+  .container {
+  position: relative;
+  
+  }
+  
+  #change {
+    height:80%;
+    width: 100%;
+    z-index: 22;
+  
+  }
+  
+  
+   .navbar {
+    background-color: none;
+    opacity: 50%;
+  }
+  
+  h1,
+  h2 {
+   
+    text-align: center;
+    color:wheat;
+    font-family: 'Raleway', sans-serif;
+      font-display: bold;
+    font-size: 70px;
+    background-color:black;
+    opacity: .5;
+    padding:15px;
+    margin-left:0px;
+    margin:0px
+     
+   
+  }
+  .nv {
+    font-size: 24px;
+    float: right;
+    text-align: center;
+    margin-right: 10px;
+    margin-top:30px;
+  }
+  .card-body {
+      position: absolute;
+      background-color: whitesmoke;
+      height: 470px;
+      width: 950px;
+      z-index: 2;
+    
+  }
+  
+  .card-text {
+    padding: 5%;
+    text-align: center;
+    font-style: italic;
+    font-size: 24px;
+  }
+  
+  #comment {
+    margin-left: -20%;
+    margin-top:-60%;
+    
+  }
+  
+  .card-title {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    color: orange;
+    font-size: 34px;
+  
+  }
+  #incentiveTitle {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    color: orange;
+    font-size: 24px;
+  
+  }
+  
+  .card-subtitle {
+    font-style: italic;
+    text-align: center;
+  }  
+  
+  #submit {
+    position: absolute;
+    /* margin-top:2%;
+    margin-left: 40%; */
+    background-color: teal;
+    z-index: 1;
+    
+  }
+  
+/* form {
+    border: 4px solid orange;
+} */
+
+
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  
+  
