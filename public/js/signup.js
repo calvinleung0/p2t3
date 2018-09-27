@@ -29,18 +29,18 @@ $(document).ready(function() {
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
-    $.post("/api/signup", {
-      email: email,
-      password: password
-    }).then(function(data) {
-      window.location.replace(data);
-      // If there's an error, handle it by throwing up a bootstrap alert
-    }).catch(handleLoginErr);
-  }
+  // function signUpUser(email, password) {
+  //   $.post("/api/signup", {
+  //     email: email,
+  //     password: password
+  //   }).then(function(data) {
+  //     window.location.replace(data);
+  //     // If there's an error, handle it by throwing up a bootstrap alert
+  //   }).catch(handleLoginErr);
+  // }
 
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-  }
+  // function handleLoginErr(err) {
+  //   $("#alert .msg").text(err.responseJSON);
+  //   $("#alert").fadeIn(500);
+  // }
 });
