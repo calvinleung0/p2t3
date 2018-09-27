@@ -19,7 +19,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/home");
     }
-    res.sendFile(path.join(__dirname, "login.html"));
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   // Here we've add our isAuthenticated middleware to this route.
