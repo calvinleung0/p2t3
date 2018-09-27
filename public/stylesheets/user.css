@@ -21,10 +21,25 @@ position: relative;
 
 #animals,
 #money {
+  /* width: 100%;
+  height:100%; */
   border: 3px solid orange;
 }
 
+#animals {
+  background-image: url("/public/images/animals.jpg");
+  float:left;
+  width:400px;
+  height: 400px;
+  margin-right:1%;
+  margin-bottom:0.5em;
+}
 
+#money {
+  background-image: url("/public/images/change.jpg");
+  float:right;
+  margin-bottom:0.5em;
+}
 .navbar {
   background-color: none;
   opacity: 50%;
