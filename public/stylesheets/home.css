@@ -1,0 +1,42 @@
+body {
+    background-image: url('../images/horazontal.jpg');
+    background-repeat: no-repeat center center fixed; 
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover; 
+}
+
+h1,
+h2 {
+ 
+  text-align: center;
+  color:wheat;
+  font-family: 'Raleway', sans-serif;
+    font-display: bold;
+  font-size: 70px;
+  background-color:black;
+  opacity: .5;
+  padding:15px;
+  margin: 0px;
+}
+
+#login {
+    font-size: 24px;
+    float: right;
+    text-align: center;
+    margin-right: 10px;
+    margin-top:30px;
+}
+
+.navbar {
+opacity: .5;
+}
+
+#navigation {
+opacity: 100%;
+}
+
+a {
+    font-size: 22px;
+}
