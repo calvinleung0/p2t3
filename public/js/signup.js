@@ -8,18 +8,19 @@ $(document).ready(function() {
 
     var firstName = $("#first-name").val().trim();
     var lastName = $("#last-name").val().trim();
-    var emailInput = $("#inputEmail").val().trim();
-    var passwordInput = $("#inputPassword").val().trim();
+    var emailInput = $("#inputEmail");
+    var emailInputReq = $("#inputEmail").val().trim();
+    var passwordInput = $("#inputPassword");
+    var passwordInputReq = $("#inputPassword").val().trim();
     var urlProPic = $("#urlProPic").val().trim();
     var interests = $("#interests").val().trim();
     var bio = $("#inputBio").val().trim();
     
     var userData = {
-      email: emailInput,
-      password: passwordInput,
+      email: emailInputReq,
+      password: passwordInputReq,
       firstName: firstName,
       lastName: lastName,
-      password: passwordInput,
       profileImg: urlProPic,
       interests: interests,
       bio: bio
@@ -32,8 +33,8 @@ $(document).ready(function() {
     }
     // If we have an email and password, run the signUpUser function
     signUpUser(userData);
-    // emailInput.val("");
-    // passwordInput.val("");
+    emailInput.val("");
+    passwordInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
