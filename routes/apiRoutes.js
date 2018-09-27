@@ -9,7 +9,7 @@ module.exports = function(app) {
   });
   // Get a user by id
   app.get("/api/users/:userid", function(req, res) {
-    db.User.findOne({
+    db.User.findAll({
       where: { id: req.params.userid },
       include: [
         {
@@ -32,10 +32,13 @@ module.exports = function(app) {
         include: [
           {
             model: db.Project,
-            attributes: ["title'", "id"]
+            attributes: ["title", "id"]
           }
         ]
       }).then(function(donations) {
+        data = data[0];
+        console.log(data);
+
         for (var i = 0; i < donations.length; i++) {
           donations[i] = donations[i].dataValues;
           donations[i].project = donations[i].Project;
@@ -54,7 +57,7 @@ module.exports = function(app) {
         delete data.Projects;
         data.donations = donations;
         data.projects = projects;
-        console.log(data);
+        
         res.json(data);
       });
     });
@@ -88,7 +91,7 @@ module.exports = function(app) {
       include: [
         {
           model: db.User,
-          attributes: ["name", "id"]
+          attributes: ["firstName", "lastName", "id"]
         },
         {
           model: db.Donation,
@@ -104,7 +107,7 @@ module.exports = function(app) {
         include: [
           {
             model: db.User,
-            attributes: ["name", "id"]
+            attributes: ["firstName", "lastName", "id"]
           }
         ]
       }).then(function(donations) {
