@@ -32,4 +32,55 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/example.html"));
   });
 
+  app.get("/users/:userid", function(req, res) {
+    db.User.findOne({
+      where: { id: req.params.userid },
+      include: [
+        {
+          model: db.Project,
+          attributes: ["title", "id"],
+          include: [
+            {
+              model: db.Donation,
+              attributes: [
+                [db.sequelize.fn("SUM", db.sequelize.col("amount")), "raised"]
+              ]
+            }
+          ]
+        }
+      ]
+    }).then(function(data) {
+      db.Donation.findAll({
+        where: { userId: req.params.userid },
+        attributes: ["amount"],
+        include: [
+          {
+            model: db.Project,
+            attributes: ["title'", "id"]
+          }
+        ]
+      }).then(function(donations) {
+        for (var i = 0; i < donations.length; i++) {
+          donations[i] = donations[i].dataValues;
+          donations[i].project = donations[i].Project;
+          delete donations[i].Project;
+        }
+        data = data.dataValues;
+
+        projects = [];
+
+        for (var i = 0; i < data.Projects.length; i++) {
+          projects[i] = data.Projects[i].dataValues;
+          projects[i].total = projects[i].Donations[0].dataValues.raised;
+          delete projects[i].Donations;
+        }
+
+        delete data.Projects;
+        data.donations = donations;
+        data.projects = projects;
+        console.log(data);
+        res.render("userdisplay", data);
+      });
+    });
+  });
 };
