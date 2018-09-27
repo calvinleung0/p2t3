@@ -54,7 +54,7 @@ module.exports = function(app) {
         delete data.Projects;
         data.donations = donations;
         data.projects = projects;
-        console.log(donations);
+        
         console.log(data);
         res.json(data);
       });
