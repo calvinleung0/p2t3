@@ -6,7 +6,6 @@ var db = require("../models");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
-
   app.get("/", isAuthenticated, function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -116,7 +115,6 @@ module.exports = function(app) {
           delete donations[i].User;
         }
         data = data.dataValues;
-  
         data.donations = donations;
         data.user = data.User.dataValues;
         delete data.User;
@@ -124,6 +122,34 @@ module.exports = function(app) {
         //console.log(data);
         res.render("projectdisplay", data);
       });
+    });
+  });
+
+  app.get("/home", function(req, res) {
+    db.Project.findAll({
+      attributes: {
+        include: [[db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]]
+      },
+      include: [
+        {
+          model: db.Donation,
+          attributes: []
+        },
+        {
+          model: db.User,
+          attributes: ["firstName", "lastName", "id"]
+        }
+      ],
+      group: ["Project.id"]
+    }).then(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        data[i] = data[i].dataValues;
+        data[i].user = data[i].User;
+        delete data[i].User;
+      }
+      console.log(data);
+      //console.log(data);
+      res.render("home", data);
     });
   });
 };
