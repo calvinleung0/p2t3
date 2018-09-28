@@ -9,8 +9,9 @@ module.exports = function(app) {
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
-    // They won't get this or even be able to access this page if they aren't authed
-    res.json("/members");
+    // They won't get this or even be able to access this page if they aren't 
+    console.log(req.user);
+    res.json("home.html");
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -19,8 +20,13 @@ module.exports = function(app) {
   app.post("/api/signup", function(req, res) {
     console.log(req.body);
     db.User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      profileImg: req.body.profileImg,
+      bio: req.body.bio,
+      interests: req.body.interests
     }).then(function() {
       res.redirect(307, "/api/login");
     }).catch(function(err) {
