@@ -82,65 +82,48 @@ module.exports = function(app) {
       });
     });
   });
-};
 
-app.get("/projects/:projectid", function(req, res) {
-  db.Project.findOne({
-    where: { id: req.params.projectid },
-    attributes: [
-      "title",
-      "id",
-      [db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]
-    ],
-    include: [
-      {
-        model: db.Donation,
-        attributes: []
-      }
-    ]
-  }).then(function(data) {
-    db.Donation.findAll({
-      where: { projectId: req.params.projectid },
-      attributes: ["amount"],
+  app.get("/projects/:projectid", function(req, res) {
+    db.Project.findOne({
+      where: { id: req.params.projectid },
+      attributes: {
+        include: [[db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]]
+      },
       include: [
         {
-          model: db.Project,
-          attributes: ["title", "id"]
+          model: db.Donation,
+          attributes: []
+        },
+        {
+          model: db.User,
+          attributes: ["firstName", "lastName", "id"]
         }
       ]
-    }).then(function(donations) {
-      db.Project.findAll({
-        where: { userId: req.params.userid },
-        attributes: [
-          "title",
-          "id",
-          [db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]
-        ],
+    }).then(function(data) {
+      db.Donation.findAll({
+        where: { projectId: req.params.projectid },
+        attributes: ["amount"],
         include: [
           {
-            model: db.Donation,
-            attributes: []
+            model: db.User,
+            attributes: ["firstName", "lastName", "id"]
           }
-        ],
-        group: ["Project.id"]
-      }).then(function(projects) {
-        console.log(projects);
-
+        ]
+      }).then(function(donations) {
         for (var i = 0; i < donations.length; i++) {
           donations[i] = donations[i].dataValues;
-          donations[i].project = donations[i].Project;
-          delete donations[i].Project;
+          donations[i].user = donations[i].User;
+          delete donations[i].User;
         }
         data = data.dataValues;
-
-        for (var i = 0; i < projects.length; i++) {
-          projects[i] = projects[i].dataValues;
-        }
+  
         data.donations = donations;
-        data.projects = projects;
+        data.user = data.User.dataValues;
+        delete data.User;
+        console.log(data);
         //console.log(data);
-        res.render("userdisplay", data);
+        res.render("projectdisplay", data);
       });
     });
   });
-});
+};

@@ -52,11 +52,13 @@
                         </div>
                 </div> <!-- close column-->
                 <div class= "col-sm-9">
+                    <h1>{{title}}</h1>
                         <div class="jumbotron">
-                                <h1 class="display-4">{{title}}</h1>
-                                <p class="lead">{{shortDesc}}</p>
+                                <p class="lead">Creator:<a href="/users/{{user.id}}" class="lead">{{user.firstName}} {{user.lastName}}</a></p>
+                                <p class="lead">Category: {{category}}</p>
+                                <p class="lead">Total Raised: {{total}}</p>
                                 <hr class="my-4">
-                                <p>{{bio}}</p>
+                                <p>{{description}}</p>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                                         Click here to donate!
@@ -97,12 +99,13 @@
 
                   <div class= "row">
                         <div class="col-sm-6">
+                            <h2>Donators</h2>
                                 <div class="card">
                                   <div class="card-body">
-                                    <h5 class="card-title">Donators</h5>
+                                    
                                     <ul class="list-group" id= "donations">
                                     {{#each donations}}
-                                    <li class="list-group-item">{{this.user.firsName}} {{this.user.lastName}}: <div class = 'green'>{{this.amount}}</div></li>
+                                    <li class="list-group-item">{{this.user.firstName}} {{this.user.lastName}}: <div class = 'green'>${{this.amount}}</div></li>
                                     {{/each}}
                                     </ul>
                                     <br>
@@ -141,18 +144,12 @@
                                 </div>
                               </div>
                               <div class="col-sm-6">
-                                <h2>Related rojects:</h2>
-                                    {{#each projects}}
-                                    <div class="card" style="width: 18rem; float: left;">
-                                        <img class="card-img-top" src = '{{this.image}}'>
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{this.title}}</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Total raised: <div class = 'green'>{{this.total}}</h6>
-                                            
-                                            <a href="/projects/{{this.id}}" class="card-link">Link</a>
-                                        </div>
-                                    </div>
-                                    {{/each}}
+                                <h2>Incentives:</h2>
+                                    <ul class="list-group" id= "donations"></ul>
+                                       <li class="list-group-item">{{inc1}}: <div class = 'green'>${{inc1cost}}</div></li>
+                                       <li class="list-group-item">{{inc2}}: <div class = 'green'>${{inc2cost}}</div></li>
+                                       <li class="list-group-item">{{inc3}}: <div class = 'green'>${{inc3cost}}</div></li>
+                                    </ul>
                               </div>
                             </div><!-- closes row-->
                             </div> <!-- close column-->
@@ -175,8 +172,61 @@
     
    <style>
 
-     
+     body {
+        background-image: url('../images/horazontal.jpg');
+        background-repeat: no-repeat center center fixed; 
+        -webkit-background-size: cover; 
+        -moz-background-size: cover; 
+        -o-background-size: cover; 
+        background-size: cover; 
+    }
 
+    .modal-body {
+        text-align: center;
+    }
+
+    h1,
+    h2 {
+    
+    text-align: center;
+    color:wheat;
+    font-family: 'Raleway', sans-serif;
+        font-display: bold;
+    font-size: 70px;
+    background-color:black;
+    opacity: .5;
+    padding:15px;
+    margin: 0px;
+    }
+
+    #login {
+        font-size: 24px;
+        float: right;
+        text-align: center;
+        margin-right: 10px;
+        margin-top:30px;
+    }
+
+    .navbar {
+    opacity: .65;
+    }
+
+    #navigation {
+    opacity: 100%;
+    }
+
+    a {
+        font-size: 22px;
+    }
+
+    h3{
+        color: white;
+    }
+
+    .green{
+      color: green;
+      float:right;
+    }
 
    </style>
     

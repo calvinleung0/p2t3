@@ -16,7 +16,7 @@
         <div class="row">
             
             <div class = "col">
-                <h2>{{name}}</h2>
+                <h2>{{firstName}} {{lastName}}</h2>
                 <div class="jumbotron">
                     <p class="lead">{{bio}}</p>
                     <hr class="my-4">
@@ -47,7 +47,7 @@
                     <img class="card-img-top" src = '{{this.image}}'>
                     <div class="card-body">
                         <h5 class="card-title">{{this.title}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Total raised: <div class = 'green'>{{this.total}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Total raised: <div class = 'green'>${{this.total}}</h6>
                         
                         <a href="/projects/{{this.id}}" class="card-link">Link</a>
                     </div>
