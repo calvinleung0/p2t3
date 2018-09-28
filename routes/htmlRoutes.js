@@ -14,12 +14,22 @@ module.exports = function(app) {
     res.render("index");
   });
 
+  app.get("/signup", function(req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/home");
+    }
+    res.render("signup")
+    // res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
   app.get("/login", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/home");
     }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.render("login");
+    // res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   app.get("/projects", function(req, res) {
@@ -27,13 +37,24 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/home");
     }
-    res.sendFile(path.join(__dirname, "../projects.html"));
+    res.render("project");
+    // res.sendFile(path.join(__dirname, "../projects.html"));
+
   app.get("/create", function(req, res) {
 
     if (req.user) {
       res.redirect("/members");
     }
-    res.sendFile(path.join(__dirname, "../public/createProject.html"));
+    res.render("createProject");
+    // res.sendFile(path.join(__dirname, "../public/createProject.html"));
+  });
+
+  app.get("/home", function(req, res) {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+    }
+    res.render("home");
   });
 
   // Here we've add our isAuthenticated middleware to this route.
