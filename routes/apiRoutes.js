@@ -132,7 +132,10 @@ module.exports = function(app) {
 
   // Create a new project
   app.post("/api/projects", function(req, res) {
-    db.Project.create(req.body).then(function(data) {
+    var project = req.body;
+    project.userid = req.user.id;
+
+    db.Project.create(project).then(function(data) {
       res.json(data);
     });
   });
@@ -146,7 +149,9 @@ module.exports = function(app) {
 
   // Add a donation
   app.post("/api/donations", function(req, res) {
-    db.Donation.create(req.body).then(function(data) {
+    var donation = req.body;
+    donation.userid = req.user.id;
+    db.Donation.create(donation).then(function(data) {
       res.json(data);
     });
   });

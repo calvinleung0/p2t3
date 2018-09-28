@@ -35,21 +35,7 @@ module.exports = function(app) {
 
   app.get("/users/:userid", function(req, res) {
     db.User.findOne({
-      where: { id: req.params.userid },
-      include: [
-        {
-          model: db.Project,
-          attributes: ["title", "id"],
-          include: [
-            {
-              model: db.Donation,
-              attributes: [
-                [db.sequelize.fn("SUM", db.sequelize.col("amount")), "raised"]
-              ]
-            }
-          ]
-        }
-      ]
+      where: { id: req.params.userid }
     }).then(function(data) {
       db.Donation.findAll({
         where: { userId: req.params.userid },
@@ -61,6 +47,85 @@ module.exports = function(app) {
           }
         ]
       }).then(function(donations) {
+        db.Project.findAll({
+          where: { userId: req.params.userid },
+          attributes: [
+            "title",
+            "id",
+            [db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]
+          ],
+          include: [
+            {
+              model: db.Donation,
+              attributes: []
+            }
+          ],
+          group: ["Project.id"]
+        }).then(function(projects) {
+          console.log(projects);
+
+          for (var i = 0; i < donations.length; i++) {
+            donations[i] = donations[i].dataValues;
+            donations[i].project = donations[i].Project;
+            delete donations[i].Project;
+          }
+          data = data.dataValues;
+
+          for (var i = 0; i < projects.length; i++) {
+            projects[i] = projects[i].dataValues;
+          }
+          data.donations = donations;
+          data.projects = projects;
+          //console.log(data);
+          res.render("userdisplay", data);
+        });
+      });
+    });
+  });
+};
+
+app.get("/projects/:projectid", function(req, res) {
+  db.Project.findOne({
+    where: { id: req.params.projectid },
+    attributes: [
+      "title",
+      "id",
+      [db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]
+    ],
+    include: [
+      {
+        model: db.Donation,
+        attributes: []
+      }
+    ]
+  }).then(function(data) {
+    db.Donation.findAll({
+      where: { projectId: req.params.projectid },
+      attributes: ["amount"],
+      include: [
+        {
+          model: db.Project,
+          attributes: ["title", "id"]
+        }
+      ]
+    }).then(function(donations) {
+      db.Project.findAll({
+        where: { userId: req.params.userid },
+        attributes: [
+          "title",
+          "id",
+          [db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]
+        ],
+        include: [
+          {
+            model: db.Donation,
+            attributes: []
+          }
+        ],
+        group: ["Project.id"]
+      }).then(function(projects) {
+        console.log(projects);
+
         for (var i = 0; i < donations.length; i++) {
           donations[i] = donations[i].dataValues;
           donations[i].project = donations[i].Project;
@@ -68,20 +133,14 @@ module.exports = function(app) {
         }
         data = data.dataValues;
 
-        projects = [];
-
-        for (var i = 0; i < data.Projects.length; i++) {
-          projects[i] = data.Projects[i].dataValues;
-          projects[i].total = projects[i].Donations[0].dataValues.raised;
-          delete projects[i].Donations;
+        for (var i = 0; i < projects.length; i++) {
+          projects[i] = projects[i].dataValues;
         }
-
-        delete data.Projects;
         data.donations = donations;
         data.projects = projects;
-        console.log(data);
+        //console.log(data);
         res.render("userdisplay", data);
       });
     });
   });
-};
+});

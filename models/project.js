@@ -19,7 +19,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     category: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT
     },
     incentives: {
       type: DataTypes.TEXT
@@ -45,12 +45,6 @@ module.exports = function (sequelize, DataTypes) {
       }
     });
 
-    Project.belongsTo(models.User, {
-      foreignKey: {
-        name: "userId",
-        allowNull: false
-      }
-    });
   };
 
   return Project;
