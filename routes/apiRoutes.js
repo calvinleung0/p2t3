@@ -57,7 +57,6 @@ module.exports = function(app) {
         delete data.Projects;
         data.donations = donations;
         data.projects = projects;
-        
         res.json(data);
       });
     });
