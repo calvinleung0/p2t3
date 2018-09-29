@@ -57,7 +57,6 @@ module.exports = function(app) {
         delete data.Projects;
         data.donations = donations;
         data.projects = projects;
-        
         res.json(data);
       });
     });
@@ -133,7 +132,7 @@ module.exports = function(app) {
   // Create a new project
   app.post("/api/projects", function(req, res) {
     var project = req.body;
-    project.userid = req.user.id;
+    project.userId = req.user.id;
 
     db.Project.create(project).then(function(data) {
       res.json(data);
@@ -150,7 +149,10 @@ module.exports = function(app) {
   // Add a donation
   app.post("/api/donations", function(req, res) {
     var donation = req.body;
-    donation.userid = req.user.id;
+    donation.userId = req.user.id;
+
+    console.log(donation);
+    console.log(req.user);
     db.Donation.create(donation).then(function(data) {
       res.json(data);
     });

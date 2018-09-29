@@ -22,36 +22,38 @@
                                 <div>
                                     <form class="col-md-4 " style="width: 38%;float:left;margin-left:20px;">
                                         <div class="col">
-                                            <input id="projectName" class="form-control" type="text" placeholder="* Project Name">
+                                            <input id="title" class="form-control" type="text" placeholder="* Project Name">
                                         </div>
                                         <br>
                                         <div class="col">
-                                            <input id="donationGoal" type="text" class="form-control" placeholder="* Donation Goal">
+                                            <input id="goal" type="text" class="form-control" placeholder="* Donation Goal">
                                         </div>
                                         <br>
                                         <div class="col">
-                                                <input id="projectUrl" type="text" class="form-control" placeholder="Upload a Picture Url">
+                                                <input id="projectImg" type="text" class="form-control" placeholder="Upload a Picture Url">
                                             </div>
                                             <br>
                                             <div class="col">
-                                                    <textarea class="form-control" id="urlDescription" rows="2"
+                                                    <textarea class="form-control" id="imageDesc" rows="2"
                                                         placeholder="URL Description"></textarea>
                                                 </div>
                                                 <br>    
-                                        <select class="custom-select">
+                                        <select class="custom-select" id="category">
                                             <option selected>Project Category</option>
-                                            <option value="1">electronics</option>
-                                            <option value="2">Games</option>
-                                            <option value="3">Children Toys</option>
+                                            <option value="1">Technology</option>
+                                            <option value="2">Charity</option>
+                                            <option value="3">Food / Beverage</option>
+                                            <option value="3">Health / Fitness</option>
+                                            <option value="3">Outdoors</option>
                                         </select>
                                         <br>
                                         <div class="col">
-                                                <textarea class="form-control" id="projectSummary" rows="2"
+                                                <textarea class="form-control" id="shortDesc" rows="2"
                                                     placeholder="Project Summary"></textarea>
                                             </div>
                                         <br>
                                         <div class="col">
-                                            <textarea class="form-control" id="fullDescription" rows="4"
+                                            <textarea class="form-control" id="description" rows="4"
                                                 placeholder="Project Description"></textarea>
                                         </div>
                                         <br>
@@ -66,33 +68,33 @@
                                         <form>
                                             <div class="form-group col-md-3 rounded">
                                                 <label for="incDollar1">Donation $</label>
-                                                <input type="text" class="form-control" id="incDollar1" placeholder="">
+                                                <input type="text" class="form-control" id="inc1cost" placeholder="">
                                             </div>
                                             <div class="form-group col-md-9">
                                                 <label for="incDollar2">Incentive Description</label>
-                                                <textarea class="form-control" id="incDollar2" rows="2"
+                                                <textarea class="form-control" id="inc1" rows="2"
                                                     placeholder=""></textarea>
                                             </div>
                                             <div class="form-group col-md-3 rounded">
                                                 <label for="incDollar3">Donation $</label>
-                                                <input type="text" class="form-control" id="incDollar3" placeholder="">
+                                                <input type="text" class="form-control" id="inc2cost" placeholder="">
                                             </div>
                                             <div class="form-group col-md-9">
                                                 <label for="incDescription1">Incentive Description</label>
-                                                <textarea class="form-control" id="incDescription1" rows="2"
+                                                <textarea class="form-control" id="inc2" rows="2"
                                                     placeholder=""></textarea>
                                             </div>
                                             <div class="form-group col-md-3 rounded">
                                                 <label for="incDescription2">Donation $</label>
-                                                <input type="text" class="form-control" id="incDescription2" placeholder="">
+                                                <input type="text" class="form-control" id="inc3cost" placeholder="">
                                             </div>
                                             <div class="form-group col-md-9">
                                                 <label for="incDescription3">Incentive Description</label>
-                                                <textarea class="form-control" id="incDescription3" rows="2"
+                                                <textarea class="form-control" id="inc3" rows="2"
                                                     placeholder=""></textarea>
                                             </div>
         
-                                            <button id="submit" type="button" class="btn-info btn-lg btn-block">Create Project</button>
+                                            <button id="submit"  class="btn-info btn-lg btn-block">Create Project</button>
                                         </form>
                                 </div>
         

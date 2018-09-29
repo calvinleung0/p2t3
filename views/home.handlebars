@@ -3,8 +3,7 @@
 
     <div class="row">
         <div class= "col-sm-12">
-        <h1>Project Starter<a id="login" href="#">Login</a>
-        </h1>
+        <h1>Project Starter<a id="signUp" href="/signup">Sign-up</a><a id="login" href="/login">Login</a></h1>
         </div>
     </div>
 
@@ -30,9 +29,11 @@
               </ul>
               <select id="category" class="custom-select">
                     <option selected>Project Category</option>
-                    <option value="1">electronics</option>
-                    <option value="2">Games</option>
-                    <option value="3">Children Toys</option>
+                    <option value="1">Technology</option>
+                    <option value="2">Charity</option>
+                    <option value="3">Food / Beverage</option>
+                    <option value="3">Health / Fitness</option>
+                    <option value="3">Outdoors</option>
                 </select>
             </div>
             </div>
@@ -44,6 +45,18 @@
 
           <br><br>
 
+        {{#each this}}
+            <div class= "col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.shortDesc}}</p>
+                        <p class="card-text">Created By: <a href="/users/{{this.user.id}}" >{{this.user.firstName}} {{this.user.lastName}}</a></p>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
           <div class= "container">
               <div class= "row">
                 <div class= "col-sm-4">
@@ -113,11 +126,3 @@
 
           </div> <!-- closes container -->
 
-
-
-
-
-    <br>
-    <br>
-    <br>
-   

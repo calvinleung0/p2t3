@@ -12,17 +12,40 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    shortDesc: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
     image: {
       type: DataTypes.STRING,
       validate: {
         isUrl: true
       }
     },
+    imageDesc: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
     category: {
       type: DataTypes.TEXT
     },
-    incentives: {
+    inc1: {
       type: DataTypes.TEXT
+    },
+    inc2: {
+      type: DataTypes.TEXT
+    },
+    inc3: {
+      type: DataTypes.TEXT
+    },
+    inc1cost: {
+      type: DataTypes.INTEGER
+    },
+    inc2cost: {
+      type: DataTypes.INTEGER
+    },
+    inc3cost: {
+      type: DataTypes.INTEGER
     },
     goal: {
       type: DataTypes.INTEGER
@@ -44,7 +67,6 @@ module.exports = function (sequelize, DataTypes) {
         name: "projectId"
       }
     });
-
   };
 
   return Project;
