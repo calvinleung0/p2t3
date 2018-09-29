@@ -153,11 +153,12 @@ module.exports = function (app) {
       var obj = {};
 
       if(req.user){
-        obj.log = "logout";
+        obj.login = "logout";
       }
       else{
-        obj.log = "login";
+        obj.login = "login";
       }
+      
       
       obj.layout = "home-layout";
       obj.projects = data;
