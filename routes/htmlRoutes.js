@@ -8,7 +8,7 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/user/home");
+      res.redirect("/home");
     }
     res.render("index");
   });
@@ -149,10 +149,30 @@ module.exports = function (app) {
         data[i].user = data[i].User;
         delete data[i].User;
       }
-      data.layout = "home-layout";
+
+      var obj = {};
+
+      if(req.user){
+        obj.login = "logout";
+      }
+      else{
+        obj.login = "login";
+      }
       
-      res.render("home", data);
+      
+      obj.layout = "home-layout";
+      obj.projects = data;
+      console.log(obj);
+      res.render("home", obj);
     });
   });
 
+  app.get("/profile", function (req, res) {
+    if(req.user){
+      res.redirect("/users/" + req.user.id);
+    }
+    else{
+      res.redirect("/login");
+    }
+  });
 };

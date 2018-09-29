@@ -11,7 +11,7 @@
         <div class= "col-sm-12">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class= "container" id= "navigation">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="/user/create">Create</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,7 +21,7 @@
                   <a class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/logout">Logout</a>
+                  <a class="nav-link" href="/{{login}}">{{login}}</a>
                 </li>
               </ul>
               <select id="category" class="custom-select">
@@ -42,84 +42,22 @@
 
           <br><br>
 
-        {{#each this}}
-            <div class= "col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.title}}</h5>
-                        <p class="card-text">{{this.shortDesc}}</p>
-                        <p class="card-text">Created By: <a href="/users/{{this.user.id}}" >{{this.user.firstName}} {{this.user.lastName}}</a></p>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
+        
           <div class= "container">
               <div class= "row">
-                <div class= "col-sm-4">
-                        <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="http://placehold.it/300x300" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Card title</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                              </div>
-                </div> <!-- closes column -->
-                <div class= "col-sm-4">
-                        <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="http://placehold.it/300x300" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Card title</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                              </div>
-                </div> <!-- closes column -->
-                <div class= "col-sm-4">
-                        <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="http://placehold.it/300x300" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Card title</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                              </div>
-                </div> <!-- closes column -->
-              </div> <!-- closes div row -->
-              <br><br>
-              <div class= "row">
+                {{#each projects}}
                     <div class= "col-sm-4">
-                            <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="http://placehold.it/300x300" alt="Card image cap">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                  </div>
-                    </div> <!-- closes column -->
-                    <div class= "col-sm-4">
-                            <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="http://placehold.it/300x300" alt="Card image cap">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                  </div>
-                    </div> <!-- closes column -->
-                    <div class= "col-sm-4">
-                            <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="http://placehold.it/300x300" alt="Card image cap">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                  </div>
-                    </div> <!-- closes column -->
-                  </div> <!-- closes div row -->
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href = "/projects/{{this.id}}">{{this.title}}</a></h5>
+                                <p class="card-text">{{this.shortDesc}}</p>
+                                <p class="card-text">Created By: <a href="/users/{{this.user.id}}" >{{this.user.firstName}} {{this.user.lastName}}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
 
           </div> <!-- closes container -->
 
