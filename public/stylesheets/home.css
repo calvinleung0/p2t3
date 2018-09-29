@@ -11,8 +11,7 @@ body {
     text-align: center;
 }
 
-h1,
-h2 {
+h1 {
  
   text-align: center;
   color:wheat;
@@ -24,6 +23,18 @@ h2 {
   padding:15px;
   margin: 0px;
 }
+
+h2 {
+ 
+    text-align: center;
+    color:wheat;
+    font-family: 'Raleway', sans-serif;
+      font-display: bold;
+    background-color:black;
+    opacity: .5;
+    padding:15px;
+    margin: 0px;
+  }
 
 #login {
     font-size: 24px;
@@ -41,8 +52,6 @@ h2 {
     margin-top:36px;
 }
 
-
-
 .navbar {
 opacity: .65;
 }
@@ -57,4 +66,12 @@ a {
 
 h3{
     color: white;
+}
+
+#logout {
+    font-size: 16px;
+    float: right;
+    text-align: center;
+    margin-right: 10px;
+    margin-top:36px;
 }

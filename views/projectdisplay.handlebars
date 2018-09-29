@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class= "col-sm-12">
-            <h1>Project Starter<a id="login" href="login">Login</a><a id="logout" href="/logout">Logout</a>
+            <h1>Project Starter
         </h1>
         </div>
     </div>
@@ -43,8 +43,8 @@
 
           <div class= "container">
               <div class= "row">
-                <div class= "col-sm-3">
-                    <div class="card" style="width: 16rem;">
+                <div class= "col-sm-4">
+                    <div class="card" style="width: 22rem;">
                         <img class="card-img-top" src="{{image}}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{this.title}}</h5>
@@ -52,14 +52,14 @@
                             </div>
                         </div>
                 </div> <!-- close column-->
+                <br>
 
 <!--Project info-->
 
 
-                <div class= "col-sm-9">
+                <div class= "col-sm-8">
                     <h1>{{title}}</h1>
                         <div class="jumbotron">
-                                <h1 class="display-4">Hello, Welcome to my project!!</h1>
                                 <p class="lead">Creator:<a href="/users/{{user.id}}" class="lead">{{user.firstName}} {{user.lastName}}</a></p>
                                 <p class="lead">Category: {{category}}</p>
                                 <p class="lead">Total Raised: {{total}}</p>
@@ -100,8 +100,6 @@
                               </div>
                     </div> <!-- closes column -->
                   </div> <!-- closes div row -->
-
-                  <br>
 
                   <div class= "row">
                         <div class="col-sm-6">
