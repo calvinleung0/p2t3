@@ -3,10 +3,10 @@ $(document).ready(function() {
   // Getting references to our form and input
 
   // When the signup button is clicked, we validate the email and password are not blank
-  $("#donate").on("click", function(event) {
+  $(".donate").on("click", function(event) {
     event.preventDefault();
-    var donationAmount = parseInt($("#donationamount").val());
-    var projectId = parseInt($("#donate").attr("projectid"));
+    var donationAmount = parseInt($(".donationamount").val());
+    var projectId = parseInt($(".donate").attr("projectid"));
     var donation = { amount: donationAmount, projectId: projectId };
 
     console.log("submitted!");
@@ -18,7 +18,8 @@ $(document).ready(function() {
   function createDonation(newDonation) {
     $.post("/api/donations", newDonation)
       .then(function(data) {
-        window.location.replace(data);
+        console.log(data);
+        //window.location.replace(data);
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
