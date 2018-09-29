@@ -67,7 +67,6 @@ module.exports = function (sequelize, DataTypes) {
         name: "projectId"
       }
     });
-
   };
 
   return Project;
