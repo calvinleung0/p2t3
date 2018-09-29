@@ -1,14 +1,9 @@
-
- <!--banner-->
-
-    <div class="row">
+<div class="row">
         <div class= "col-sm-12">
-            <h1>Project Starter<a id="login" href="login">Login</a><a id="logout" href="/logout">Logout</a>
+        <h1>Project Starter<a id="login" href="#">Login</a>
         </h1>
         </div>
     </div>
-
-<!--nav-->
 
     <div class= "row">
         <div class= "col-sm-12">
@@ -20,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Logout</a>
@@ -36,37 +31,26 @@
 
           <br><br>
 
-
-<!--user profile-->
-
-
-
           <div class= "container">
               <div class= "row">
                 <div class= "col-sm-3">
-                    <div class="card" style="width: 16rem;">
+                    <div class="card" style="width: 17rem;">
                         <img class="card-img-top" src="{{image}}" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">{{this.title}}</h5>
                                 <p class="card-text">{{photoDesc}}</p>
                             </div>
                         </div>
                 </div> <!-- close column-->
-
-<!--Project info-->
-
-
                 <div class= "col-sm-9">
                     <h1>{{title}}</h1>
                         <div class="jumbotron">
-                                <h1 class="display-4">Hello, Welcome to my project!!</h1>
                                 <p class="lead">Creator:<a href="/users/{{user.id}}" class="lead">{{user.firstName}} {{user.lastName}}</a></p>
                                 <p class="lead">Category: {{category}}</p>
                                 <p class="lead">Total Raised: {{total}}</p>
                                 <hr class="my-4">
                                 <p>{{description}}</p>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                                         Click here to donate!
                                     </button>
                                     
@@ -92,7 +76,7 @@
                                                   </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" {{description}} class="btn btn-outline-success donate" projectid = "{{id}}" >Save changes</button>
+                                            <button type="button" projectid="{{id}}" class="donate btn btn-primary">Save changes</button>
                                             </div>
                                         </div>
                                         </div>
@@ -105,59 +89,57 @@
 
                   <div class= "row">
                         <div class="col-sm-6">
-                            <h2>Donations:</h2>
+                            <h2>Donators</h2>
                                 <div class="card">
                                   <div class="card-body">
-                                    <ul class="list-group" id= "donations">{{#each donations}}
-                                                <li class="list-group-item">{{this.user.firstName}} {{this.user.lastName}}: <div class = 'green'>${{this.amount}}</div></li>
+                                    
+                                    <ul class="list-group" id= "donations">
+                                    {{#each donations}}
+                                    <li class="list-group-item">{{this.user.firstName}} {{this.user.lastName}}: <div class = 'green'>${{this.amount}}</div></li>
                                     {{/each}}
                                     </ul>
-                                              <br>
-                                              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModalCenter">
-                                                    Click here to donate!
-                                                </button>
-                                                
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Donation</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        </div>
-                                                        <br>
-                                                        <div class="modal-body">
-                                                        How much would you like to donate?
-                                                        </div>
-                                                        <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                  <span class="input-group-text">$</span>
-                                                                </div>
-                                                                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                                                              </div>
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" projectid="{{id}}" class="donate btn btn-outline-success">Save changes</button>
-                                                        </div>
+                                    <br>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Click here to donate!
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Donation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <br>
+                                            <div class="modal-body">
+                                            How much would you like to donate?
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
                                                     </div>
+                                                    <input type="text" class = "donationamount form-control" aria-label="Dollar amount (with dot and two decimal places)">
                                                     </div>
-                                                </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" projectid="{{id}}" class="donate btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="col-sm-6">
                                 <h2>Incentives:</h2>
-                                <div class="card">
-                                  <div class="card-body">
                                     <ul class="list-group" id= "donations"></ul>
                                        <li class="list-group-item">{{inc1}}: <div class = 'green'>${{inc1cost}}</div></li>
                                        <li class="list-group-item">{{inc2}}: <div class = 'green'>${{inc2cost}}</div></li>
                                        <li class="list-group-item">{{inc3}}: <div class = 'green'>${{inc3cost}}</div></li>
                                     </ul>
-                                  </div>
-                                </div>
                               </div>
                             </div><!-- closes row-->
                             </div> <!-- close column-->
@@ -176,3 +158,66 @@
     <br>
     <br>
     <br>
+    
+    
+   <style>
+
+     body {
+        background-image: url('../images/horazontal.jpg');
+        background-repeat: no-repeat center center fixed; 
+        -webkit-background-size: cover; 
+        -moz-background-size: cover; 
+        -o-background-size: cover; 
+        background-size: cover; 
+    }
+
+    .modal-body {
+        text-align: center;
+    }
+
+    h1,
+    h2 {
+    
+    text-align: center;
+    color:wheat;
+    font-family: 'Raleway', sans-serif;
+        font-display: bold;
+    font-size: 70px;
+    background-color:black;
+    opacity: .5;
+    padding:15px;
+    margin: 0px;
+    }
+
+    #login {
+        font-size: 24px;
+        float: right;
+        text-align: center;
+        margin-right: 10px;
+        margin-top:30px;
+    }
+
+    .navbar {
+    opacity: .65;
+    }
+
+    #navigation {
+    opacity: 100%;
+    }
+
+    a {
+        font-size: 22px;
+    }
+
+    h3{
+        color: white;
+    }
+
+    .green{
+      color: green;
+      float:right;
+    }
+
+   </style>
+    
+    
