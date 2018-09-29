@@ -21,8 +21,6 @@ $(document).ready(function() {
     var inc3cost = parseInt($("#inc3cost").val().trim());
     var inc3 = $("#inc3").val().trim();
 
-    
-    
     var newProject = {
       title: title,
       goal: goal,
@@ -59,7 +57,7 @@ $(document).ready(function() {
         console.log(data);
       })
       .catch(handleLoginErr);
-    }
+  }
 
   function handleLoginErr(err) {
     $("#alert .msg").text(err.responseJSON);

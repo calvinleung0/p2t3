@@ -4,7 +4,11 @@
     "password": "root",
     "database": "projectstarter",
     "host": "127.0.0.1",
+<<<<<<< HEAD
     "PORT": 8889,
+=======
+    "port": 8889,
+>>>>>>> 51fbe28f60d535f4fe2d3de95be9b15df1f26beb
     "dialect": "mysql"
   },
   "test": {

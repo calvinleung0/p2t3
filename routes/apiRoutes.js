@@ -149,7 +149,10 @@ module.exports = function(app) {
   // Add a donation
   app.post("/api/donations", function(req, res) {
     var donation = req.body;
-    donation.userid = req.user.id;
+    donation.userId = req.user.id;
+
+    console.log(donation);
+    console.log(req.user);
     db.Donation.create(donation).then(function(data) {
       res.json(data);
     });
