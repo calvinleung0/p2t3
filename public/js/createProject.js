@@ -47,7 +47,7 @@ $(document).ready(function() {
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function createNewProject(newProject) {
-    $.post("/api/signup", {
+    $.post("/api/project", {
       firstName: newProject.firstName,
       lastName: newProject.lastName,
       email: newProject.email,

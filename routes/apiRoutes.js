@@ -133,7 +133,8 @@ module.exports = function(app) {
   // Create a new project
   app.post("/api/projects", function(req, res) {
     var project = req.body;
-    project.userid = req.user.id;
+    project.userid = req.User.id;
+  
 
     db.Project.create(project).then(function(data) {
       res.json(data);
