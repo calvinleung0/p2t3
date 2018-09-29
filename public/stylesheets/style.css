@@ -83,7 +83,7 @@ h2 {
   position: absolute;
   margin-top:-5%;
   margin-left: 34%;
-  background-color: teal;
+  background-color: lightgray;
   z-index: 1;
   
 }
@@ -108,3 +108,4 @@ form.login {
 .list-group-item {
   line-height: 2.5;
 }
+
