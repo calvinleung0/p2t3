@@ -49,8 +49,9 @@ $(document).ready(function() {
       bio: userData.bio,
       interests: userData.interests
     }).then(function(data) {
+      //refresh the page with server callback
       window.location.replace(data);
-      // If there's an error, handle it by throwing up a bootstrap alert
+    
     }).catch(handleLoginErr);
   }
 
