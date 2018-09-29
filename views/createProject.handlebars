@@ -1,0 +1,103 @@
+       <div class="row">
+                <h1>Create Project
+                    <a class="nv" href="#">Home</a>
+                    <a class="nv" href="#">New Project</a>
+                    <!-- <a class="nv" href="#">Donation</a> -->
+                </h1>
+            </div>
+        
+        
+        
+            <!-- Image -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 col-md-offset-3">
+                        <img id="change" src="../public/images/animals.jpg">
+        
+        
+                        <div class="card" id="comment" style="width: 18rem;">
+                            <div class="card-body ">
+                                <h4 class="card-title">Create New Project</h4>
+                                <h6 class="card-subtitle mb-2 text-muted">*-fields are required</h6>
+                                <div>
+                                    <form class="col-md-4 " style="width: 38%;float:left;margin-left:20px;">
+                                        <div class="col">
+                                            <input id="projectName" class="form-control" type="text" placeholder="* Project Name">
+                                        </div>
+                                        <br>
+                                        <div class="col">
+                                            <input id="donationGoal" type="text" class="form-control" placeholder="* Donation Goal">
+                                        </div>
+                                        <br>
+                                        <div class="col">
+                                                <input id="projectUrl" type="text" class="form-control" placeholder="Upload a Picture Url">
+                                            </div>
+                                            <br>
+                                            <div class="col">
+                                                    <textarea class="form-control" id="urlDescription" rows="2"
+                                                        placeholder="URL Description"></textarea>
+                                                </div>
+                                                <br>    
+                                        <select class="custom-select">
+                                            <option selected>Project Category</option>
+                                            <option value="1">electronics</option>
+                                            <option value="2">Games</option>
+                                            <option value="3">Children Toys</option>
+                                        </select>
+                                        <br>
+                                        <div class="col">
+                                                <textarea class="form-control" id="projectSummary" rows="2"
+                                                    placeholder="Project Summary"></textarea>
+                                            </div>
+                                        <br>
+                                        <div class="col">
+                                            <textarea class="form-control" id="fullDescription" rows="4"
+                                                placeholder="Project Description"></textarea>
+                                        </div>
+                                        <br>
+                                       
+                                    </form>
+        
+                                    <form class="col-md-8 col-md-offset-1" style="width: 48%;float:right;margin-right:15px;">
+                                        <h4 id="incentiveTitle" class="card-title">Donation Incentives</h4>
+                                        <h6 class="card-subtitle mb-2 text-muted">Here you can offer up to three incetives.
+                                            First enter the amount required to get the incentive. Followed by a
+                                            description of the incentive.</h6>
+                                        <form>
+                                            <div class="form-group col-md-3 rounded">
+                                                <label for="incDollar1">Donation $</label>
+                                                <input type="text" class="form-control" id="incDollar1" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-9">
+                                                <label for="incDollar2">Incentive Description</label>
+                                                <textarea class="form-control" id="incDollar2" rows="2"
+                                                    placeholder=""></textarea>
+                                            </div>
+                                            <div class="form-group col-md-3 rounded">
+                                                <label for="incDollar3">Donation $</label>
+                                                <input type="text" class="form-control" id="incDollar3" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-9">
+                                                <label for="incDescription1">Incentive Description</label>
+                                                <textarea class="form-control" id="incDescription1" rows="2"
+                                                    placeholder=""></textarea>
+                                            </div>
+                                            <div class="form-group col-md-3 rounded">
+                                                <label for="incDescription2">Donation $</label>
+                                                <input type="text" class="form-control" id="incDescription2" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-9">
+                                                <label for="incDescription3">Incentive Description</label>
+                                                <textarea class="form-control" id="incDescription3" rows="2"
+                                                    placeholder=""></textarea>
+                                            </div>
+        
+                                            <button id="submit" type="button" class="btn-info btn-lg btn-block">Create Project</button>
+                                        </form>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
