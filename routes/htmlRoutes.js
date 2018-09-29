@@ -3,24 +3,24 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-  app.get("/", function(req, res) {
+  app.get("/", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
-      res.redirect("/user/home");
+      res.redirect("/home");
     }
     res.render("index");
   });
 
-  app.get("/signup", function(req, res) {
+  app.get("/signup", function (req, res) {
     if (req.user) {
-      res.redirect("/members");
+      res.redirect("/home");
     }
     res.render("signup");
   });
 
-  app.get("/login", function(req, res) {
+  app.get("/login", function (req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/home");
@@ -28,29 +28,15 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.get("/user/create", isAuthenticated, function(req, res) {
+  app.get("/user/create", isAuthenticated, function (req, res) {
 
     res.render("createProject", {layout: "createProject-layout"});
   });
 
-  app.get("/user/home", isAuthenticated, function(req, res) {
-  
-    res.render("home", {layout: "home-layout"});
-  });
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  // app.get("/members", isAuthenticated, function(req, res) {
-  //   res.sendFile(path.join(__dirname, "../public/members.html"));
-  // });
-
-  // app.get("/example/:id", isAuthenticated, function(req, res) {
-  //   res.sendFile(path.join(__dirname, "../public/example.html"));
-  // });
-
-  app.get("/users/:userid", function(req, res) {
+  app.get("/users/:userid", function (req, res) {
     db.User.findOne({
       where: { id: req.params.userid }
-    }).then(function(data) {
+    }).then(function (data) {
       db.Donation.findAll({
         where: { userId: req.params.userid },
         attributes: ["amount"],
@@ -60,7 +46,7 @@ module.exports = function(app) {
             attributes: ["title", "id"]
           }
         ]
-      }).then(function(donations) {
+      }).then(function (donations) {
         db.Project.findAll({
           where: { userId: req.params.userid },
           attributes: [
@@ -75,7 +61,7 @@ module.exports = function(app) {
             }
           ],
           group: ["Project.id"]
-        }).then(function(projects) {
+        }).then(function (projects) {
           console.log(projects);
 
           for (var i = 0; i < donations.length; i++) {
@@ -97,7 +83,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/projects/:projectid", function(req, res) {
+  app.get("/projects/:projectid", function (req, res) {
     db.Project.findOne({
       where: { id: req.params.projectid },
       attributes: {
@@ -113,7 +99,7 @@ module.exports = function(app) {
           attributes: ["firstName", "lastName", "id"]
         }
       ]
-    }).then(function(data) {
+    }).then(function (data) {
       db.Donation.findAll({
         where: { projectId: req.params.projectid },
         attributes: ["amount"],
@@ -123,7 +109,7 @@ module.exports = function(app) {
             attributes: ["firstName", "lastName", "id"]
           }
         ]
-      }).then(function(donations) {
+      }).then(function (donations) {
         for (var i = 0; i < donations.length; i++) {
           donations[i] = donations[i].dataValues;
           donations[i].user = donations[i].User;
@@ -133,15 +119,15 @@ module.exports = function(app) {
         data.donations = donations;
         data.user = data.User.dataValues;
         delete data.User;
-        console.log(data);
+       
         data.layout = "projectDisplay-layout";
-        //console.log(data);
+        
         res.render("projectdisplay", data);
       });
     });
   });
 
-  app.get("/home", function(req, res) {
+  app.get("/home", function (req, res) {
     db.Project.findAll({
       attributes: {
         include: [[db.sequelize.fn("SUM", db.sequelize.col("amount")), "total"]]
@@ -157,16 +143,35 @@ module.exports = function(app) {
         }
       ],
       group: ["Project.id"]
-    }).then(function(data) {
+    }).then(function (data) {
       for (var i = 0; i < data.length; i++) {
         data[i] = data[i].dataValues;
         data[i].user = data[i].User;
         delete data[i].User;
       }
-      console.log(data);
-      //console.log(data);
-      res.render("home", data);
+
+      var obj = {};
+
+      if(req.user){
+        obj.log = "logout";
+      }
+      else{
+        obj.log = "login";
+      }
+      
+      obj.layout = "home-layout";
+      obj.projects = data;
+      console.log(obj);
+      res.render("home", obj);
     });
   });
 
+  app.get("/profile", function (req, res) {
+    if(req.user){
+      res.redirect("/users/" + req.user.id);
+    }
+    else{
+      res.redirect("/login");
+    }
+  });
 };

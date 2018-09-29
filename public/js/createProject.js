@@ -14,6 +14,7 @@ $(document).ready(function() {
     var description = $("#description").val().trim();
     var shortDesc = $("#shortDesc").val().trim();
     var imageDesc = $("#imageDesc").val().trim();
+    var projectImg = $("#projectImg").val().trim();
     var inc1cost = parseInt($("#inc1cost").val().trim());
     var inc1 = $("#inc1").val().trim();
     var inc2cost = parseInt($("#inc2cost").val().trim());
@@ -33,7 +34,8 @@ $(document).ready(function() {
       inc2: inc2,
       inc3cost: inc3cost,
       inc3: inc3,
-      imageDesc: imageDesc
+      imageDesc: imageDesc,
+      image: projectImg
     };
 
     console.log(newProject);
