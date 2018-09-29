@@ -4,8 +4,15 @@
 var db = require("../models");
 
 module.exports = function(app) {
+<<<<<<< HEAD
 
   app.get("/", function(req, res) {
+=======
+
+
+  app.get("/", function(req, res) {
+
+>>>>>>> 04eff725e0a012c77faed1ca4e49150bfadb0dbf
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/members");
@@ -46,6 +53,10 @@ module.exports = function(app) {
   //   res.sendFile(path.join(__dirname, "../public/example.html"));
   // });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04eff725e0a012c77faed1ca4e49150bfadb0dbf
   app.get("/users/:userid", function(req, res) {
     db.User.findOne({
       where: { id: req.params.userid }
