@@ -19,7 +19,7 @@ $(document).ready(function() {
     $.post("/api/donations", newDonation)
       .then(function(data) {
         console.log(data);
-        window.location.replace(data);
+        location.reload();
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
