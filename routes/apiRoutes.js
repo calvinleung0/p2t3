@@ -134,10 +134,6 @@ module.exports = function(app) {
     var project = req.body;
     project.userId = req.user.id;
 
-    console.log("asdf");
-    console.log(req.user);  
-    console.log('route called');
-    console.log(project);
     db.Project.create(project).then(function(data) {
       res.json(data);
     });

@@ -26,12 +26,12 @@ module.exports = function(app) {
     res.render("login");
   });
 
-  app.get("/user/create", function(req, res) {
+  app.get("/user/create", isAuthenticated, function(req, res) {
 
     res.render("createProject", {layout: "createProject-layout"});
   });
 
-  app.get("/user/home", function(req, res) {
+  app.get("/user/home", isAuthenticated, function(req, res) {
   
     res.render("home", {layout: "home-layout"});
   });
