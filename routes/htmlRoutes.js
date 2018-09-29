@@ -1,13 +1,11 @@
 // Requiring our custom middleware for checking if a user is logged in
 // var isAuthenticated = require("../config/middleware/isAuthenticated");
 
+var db = require("../models");
+
 module.exports = function(app) {
-<<<<<<< HEAD
-  app.get("/", isAuthenticated, function(req, res) {
-=======
 
   app.get("/", function(req, res) {
->>>>>>> f172426d96f676f6bf6455b3658a03046e2038e9
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/members");
@@ -48,7 +46,6 @@ module.exports = function(app) {
   //   res.sendFile(path.join(__dirname, "../public/example.html"));
   // });
 
-<<<<<<< HEAD
   app.get("/users/:userid", function(req, res) {
     db.User.findOne({
       where: { id: req.params.userid }
@@ -169,6 +166,4 @@ module.exports = function(app) {
       res.render("home", data);
     });
   });
-=======
->>>>>>> f172426d96f676f6bf6455b3658a03046e2038e9
 };
