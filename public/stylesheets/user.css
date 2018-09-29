@@ -45,6 +45,12 @@ position: relative;
   opacity: 50%;
 }
 
+#home {
+  margin-top: -5%;
+  margin-right: 5%;
+  font-size:32px;
+}
+
 h1,
 h2 {
  

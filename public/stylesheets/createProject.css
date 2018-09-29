@@ -51,7 +51,7 @@ body {
   .card-body {
       position: absolute;
       background-color: whitesmoke;
-      height: 470px;
+      height: 535px;
       width: 950px;
       z-index: 2;
     
@@ -92,8 +92,9 @@ body {
   
   #submit {
     position: absolute;
-    /* margin-top:2%;
-    margin-left: 40%; */
+    width: 85%;
+    margin-left:5%; 
+    margin-top:65%;
     background-color: teal;
     z-index: 1;
     

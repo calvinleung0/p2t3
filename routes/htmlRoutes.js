@@ -31,7 +31,7 @@ module.exports = function(app) {
     if (req.user) {
       res.redirect("/members");
     }
-    res.render("create");
+    res.render("createProject");
   });
 
   // Here we've add our isAuthenticated middleware to this route.
