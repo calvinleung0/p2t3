@@ -1,12 +1,9 @@
 $(document).ready(function() {
   // Getting references to our form and input
-  //var createForm = $("form#create");
-  console.log("js linked properly");
+  
   // When the signup button is clicked, we validate the email and password are not blank
   $("#submit").on("click", function(event) {
     event.preventDefault();
-
-    console.log("submitted!");
 
     var title = $("#title").val().trim();
     var goal = parseInt($("#goal").val().trim());
@@ -45,8 +42,8 @@ $(document).ready(function() {
     }
     // If we have an email and password, run the signUpUser function
     createNewProject(newProject);
-    //title.val("");
-    //goal.val("");
+    //alertify
+    donationAlertify();
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
@@ -54,11 +51,15 @@ $(document).ready(function() {
   function createNewProject(newProject) {
     $.post("/api/projects", newProject)
       .then(function(data) {
-        //window.location.replace(data);
+        window.location.replace(data);
         // If there's an error, handle it by throwing up a bootstrap alert
-        console.log(data);
+        // console.log(data);
       })
       .catch(handleLoginErr);
+  }
+
+  function donationAlertify() {
+    alertify.success("New Project Added!");
   }
 
   function handleLoginErr(err) {
