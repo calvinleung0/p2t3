@@ -137,6 +137,7 @@ module.exports = function(app) {
     db.Project.create(project).then(function(data) {
       res.json(data);
     });
+    res.json("/users/" + req.user.id);
   });
 
   // Delete a project by id
